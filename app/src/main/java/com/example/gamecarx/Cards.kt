@@ -41,8 +41,31 @@ class Cards {
         }
         return null
     }
-    fun shuffleCards(cards: List<Card>): List<Card> {
+    fun swapCards(cards: MutableList<Card>, i: Int, j: Int): MutableList<Card> {
+        var jbis = j
+        if(i == j) { // Case it is the same card, take the next card
+            jbis = j + 1
+        }
+        var t = cards[i]
+        cards[i] = cards[jbis]
+        cards[j] = t
+        return cards
+    }
+
+    fun shuffleCards(cards: List<Card>, i_MIN: Int=200, I_MAX: Int=500): List<Card> {
         // TODO shuffle the cards given
+        // val rnd_swaps = (200..500).random() get number between 200 and 500
+        var rnd_swaps = (i_MIN..i_MAX).random()
+        var i_swap = (0..cards.size-2).random()
+        var j_swap = (0..cards.size-2).random()
+        while(rnd_swaps>0) { // for each swap
+            --rnd_swaps
+            cards = swapCards(cards, i_swap, j_swap)
+            i_swap = (0..cards.size-2).random() // take number between 0 and max numbers cards less 2
+            j_swap = (0..cards.size-2).random() // take number between 0 and max numbers cards less 2
+            //println(i_swap.toString() + " " + j_swap + " " + cards)
+        }
+
         return cards
     }
 
