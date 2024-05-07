@@ -28,4 +28,20 @@ class CardsTest {
         val mycards_base: List<Card>? = cards_base.getCards()
         assertEquals(/* expected = */ 47, /* actual = */ mycards_base?.size)
     }
+    @Test
+    fun swapCards() {
+        val mycards_base: List<Card>? = cards_base.getCards()
+        var i = 2
+        var j = 4
+        var t = mycards_base.swapCards(mycards_base, i, j)
+        assertEquals(/* expected = */ mycards_base[j], /* actual = */ t[i])
+        assertEquals(/* expected = */ mycards_base[i], /* actual = */ t[j])
+    }
+    @Test
+    fun shuffleCards() {
+        val mycards_base: List<Card>? = cards_base.getCards()
+        var t = mycards_base.shuffleCards(mycards_base)
+        // TODO check if it works
+        assertEquals(/* expected = */ true, /* actual = */ t.containsAll(mycards_base))
+    }
 }
