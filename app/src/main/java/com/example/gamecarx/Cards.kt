@@ -53,8 +53,7 @@ class Cards {
     }
 
     fun shuffleCards(cards: List<Card>, i_MIN: Int=200, I_MAX: Int=500): List<Card> {
-        // TODO shuffle the cards given
-        // val rnd_swaps = (200..500).random() get number between 200 and 500
+        // shuffle the cards given
         var rnd_swaps = (i_MIN..i_MAX).random()
         var i_swap = (0..cards.size-2).random()
         var j_swap = (0..cards.size-2).random()
