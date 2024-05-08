@@ -10,11 +10,11 @@ class CardsTest {
     @Before
     fun setUp() {
         //cards = Cards("C:\\Users\\johdu\\AndroidStudioProjects\\GameCarx\\app\\src\\main\\res\\dataset\\cards_base.csv")
-        cards_base = Cards("src/main/res/dataset/cards_base.csv")
+        cards_base = Cards("src/main/assets/dataset/cards_base.csv")
     }
     @Test
     fun getCardsPath() {
-        assertEquals(/* expected = */ "src/main/res/dataset/cards_base.csv", /* actual = */ cards_base.cardsPath)
+        assertEquals(/* expected = */ "src/main/assets/dataset/cards_base.csv", /* actual = */ cards_base.cardsPath)
     }
 
     @Test
@@ -44,5 +44,6 @@ class CardsTest {
         val mycards_base: MutableList<Card> = cards_base.getCards() as MutableList<Card>
         var t = cards_base.shuffleCards(mycards_base)
         assertEquals(/* expected = */ true, /* actual = */ t.containsAll(mycards_base))
+        assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(t))
     }
 }

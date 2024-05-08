@@ -65,7 +65,6 @@ class Cards {
             j_swap = (0..cards.size-2).random() // take number between 0 and max numbers cards less 2
             //println(i_swap.toString() + " " + j_swap + " " + cards)
         }
-
         return cards
     }
 
