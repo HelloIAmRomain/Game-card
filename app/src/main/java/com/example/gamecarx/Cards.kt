@@ -52,7 +52,7 @@ class Cards {
         return cards
     }
 
-    fun shuffleCards(cards: MutableList<Card>, i_MIN: Int=200, i_MAX: Int=500): List<Card> {
+    fun shuffleCards(cards: MutableList<Card>, i_MIN: Int=200, i_MAX: Int=500): MutableList<Card> {
         // shuffle the cards given
         var rnd_swaps = (i_MIN..i_MAX).random()
         var i_swap = (0..cards.size-2).random()

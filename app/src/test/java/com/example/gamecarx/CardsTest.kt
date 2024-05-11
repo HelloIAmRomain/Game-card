@@ -26,7 +26,7 @@ class CardsTest {
     @Test
     fun getCards() {
         val mycards_base: List<Card>? = cards_base.getCards()
-        assertEquals(/* expected = */ 47, /* actual = */ mycards_base?.size)
+        assertEquals(/* expected = */ 48, /* actual = */ mycards_base?.size)
     }
     @Test
     fun swapCards() {
