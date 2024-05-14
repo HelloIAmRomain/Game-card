@@ -7,16 +7,21 @@ import java.io.FileReader
 
 class Cards {
     var cardsPath: String
-
+    private var cards: MutableList<Card>
     constructor(cardsPath: String) {
         this.cardsPath = cardsPath
+        this.cards = initCards()!!
     }
 
-    fun getCards(): MutableList<Card>? {
-        val cards = mutableListOf<Card>()
+    fun getCards():MutableList<Card> {
+        return this.cards
+    }
+
+    fun initCards(): MutableList<Card>? {
         var nb: Int
+        var cards: MutableList<Card> = ArrayList()
         try {
-            val br = BufferedReader(FileReader(cardsPath))
+            val br = BufferedReader(FileReader(this.cardsPath))
             var line: String?
 
             // Read the file line by line except first line
@@ -41,30 +46,36 @@ class Cards {
         }
         return null
     }
-    fun swapCards(cards: MutableList<Card>?, i: Int, j: Int): MutableList<Card> {
+    fun swapCards(i: Int, j: Int): MutableList<Card> {
         var jbis = j
         if(i == j) { // Case it is the same card, take the next card
             jbis = j + 1
         }
-        var t = cards!![i]
-        cards[i] = cards[jbis]
-        cards[jbis] = t
-        return cards
+        var t = this.cards!![i]
+        this.cards[i] = this.cards[jbis]
+        this.cards[jbis] = t
+        return this.cards
     }
 
-    fun shuffleCards(cards: MutableList<Card>, i_MIN: Int=200, i_MAX: Int=500): MutableList<Card> {
+    fun shuffleCards(i_MIN: Int=200, i_MAX: Int=500): MutableList<Card> {
         // shuffle the cards given
         var rnd_swaps = (i_MIN..i_MAX).random()
-        var i_swap = (0..cards.size-2).random()
-        var j_swap = (0..cards.size-2).random()
-        var cards_ = cards
+        var i_swap = (0..this.cards.size-2).random()
+        var j_swap = (0..this.cards.size-2).random()
         while(rnd_swaps>0) { // for each swap
             --rnd_swaps
-            cards_ = swapCards(cards_, i_swap, j_swap)
-            i_swap = (0..cards.size-2).random() // take number between 0 and max numbers cards less 2
-            j_swap = (0..cards.size-2).random() // take number between 0 and max numbers cards less 2
+            this.cards = swapCards(i_swap, j_swap)
+            i_swap = (0..this.cards.size-2).random() // take number between 0 and max numbers cards less 2
+            j_swap = (0..this.cards.size-2).random() // take number between 0 and max numbers cards less 2
             //println(i_swap.toString() + " " + j_swap + " " + cards)
         }
+        return this.cards
+    }
+
+    fun giveCards(mode: Int): MutableList<Card> {
+        // TODO
+        //   add cards on new list
+        //   remove previous cards from cards
         return cards
     }
 

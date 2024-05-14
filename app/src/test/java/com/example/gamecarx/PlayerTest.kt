@@ -10,7 +10,8 @@ class PlayerTest {
     @Before
     fun setUp() {
         var cards_base = Cards("src/main/assets/dataset/cards_base.csv")
-        var first_ten_0 = cards_base.shuffleCards(cards_base.getCards()!!).subList(0, 10)
+        cards_base.shuffleCards().subList(0, 10)
+        var first_ten_0 = cards_base.getCards()
         // give 10 cards to player
         p1 = Player(first_ten_0,0)
 

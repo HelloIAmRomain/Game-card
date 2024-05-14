@@ -15,8 +15,8 @@ class CardTest {
         //cards = Cards("C:\\Users\\johdu\\AndroidStudioProjects\\GameCarx\\app\\src\\main\\res\\dataset\\cards_base.csv")
         cards_base = Cards("src/main/assets/dataset/cards_base.csv")
 
-        card_base1 = cards_base.getCards()?.get(1)!! // first card
-        card_base2 = cards_base.getCards()?.get(2)!! // second card
+        card_base1 = cards_base.getCards().get(1) // first card
+        card_base2 = cards_base.getCards().get(2) // second card
     }
 
     @Test

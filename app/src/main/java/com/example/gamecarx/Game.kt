@@ -16,7 +16,7 @@ class Game {
     fun mode_0() {
         // Get cards with correct path
         var cards_base: Cards = Cards("src/main/assets/dataset/cards_base.csv")
-        var cards_shuffle = cards_base.getCards()?.let { cards_base.shuffleCards(it) }
+        var cards_shuffle = cards_base.getCards()?.let { cards_base.shuffleCards() }
         // 47 cards
         // TODO distrib to players
         // TODO display  10 drawing cards with number on it for each player

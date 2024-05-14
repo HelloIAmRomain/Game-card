@@ -33,16 +33,16 @@ class CardsTest {
         var mycards_base = cards_base.getCards()
         var i = 2
         var j = 4
-        var t_i = mycards_base!![i]
+        var t_i = mycards_base[i]
         var t_j = mycards_base[j]
-        mycards_base = cards_base.swapCards(mycards_base, i, j)
+        mycards_base = cards_base.swapCards(i, j)
         assertEquals(/* expected = */ mycards_base[j], /* actual = */ t_i)
         assertEquals(/* expected = */ mycards_base[i], /* actual = */ t_j)
     }
     @Test
     fun shuffleCards() {
         val mycards_base: MutableList<Card> = cards_base.getCards() as MutableList<Card>
-        var t = cards_base.shuffleCards(mycards_base)
+        var t = cards_base.shuffleCards()
         assertEquals(/* expected = */ true, /* actual = */ t.containsAll(mycards_base))
         assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(t))
     }
