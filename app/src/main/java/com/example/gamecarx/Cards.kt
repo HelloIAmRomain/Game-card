@@ -51,7 +51,7 @@ class Cards {
         if(i == j) { // Case it is the same card, take the next card
             jbis = j + 1
         }
-        var t = this.cards!![i]
+        var t = this.cards[i]
         this.cards[i] = this.cards[jbis]
         this.cards[jbis] = t
         return this.cards
@@ -73,10 +73,23 @@ class Cards {
     }
 
     fun giveCards(mode: Int): MutableList<Card> {
-        // TODO
-        //   add cards on new list
-        //   remove previous cards from cards
-        return cards
+        var cards_to_give: MutableList<Card> = ArrayList()
+        var it: Int
+        if(mode == 0) { // solo
+            it = 10
+        }
+        else { // multi
+            it = 6
+        }
+        var i = 0
+        while(i < it) {
+            //   add cards on new list
+            cards_to_give.add(this.cards[0])
+            //   remove previous cards from cards
+            this.cards.removeAt(0)
+            ++i
+        }
+        return cards_to_give
     }
 
 }

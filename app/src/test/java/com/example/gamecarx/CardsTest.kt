@@ -46,4 +46,14 @@ class CardsTest {
         assertEquals(/* expected = */ true, /* actual = */ t.containsAll(mycards_base))
         assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(t))
     }
+    @Test
+    fun giveCards_0() {
+        assertEquals(/* expected = */ 10, /* actual = */ cards_base.giveCards(0).size)
+        assertEquals(/* expected = */ 38, /* actual = */ cards_base.getCards().size)
+    }
+    @Test
+    fun giveCards_1() {
+        assertEquals(/* expected = */ 6, /* actual = */ cards_base.giveCards(1).size)
+        assertEquals(/* expected = */ 42, /* actual = */ cards_base.getCards().size)
+    }
 }
