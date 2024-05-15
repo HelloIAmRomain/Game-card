@@ -24,6 +24,9 @@ class Player(cards: MutableList<Card>, mode: Int) {
         this.life_point = 3
     }
 
+    // TODO isLost()
+    //  check cards on hand and on board
+    //  check life point
     // TODO playCard()
     // TODO attackBoard()
 
