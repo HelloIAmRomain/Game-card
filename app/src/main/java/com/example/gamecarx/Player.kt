@@ -45,7 +45,7 @@ class Player(cards: MutableList<Card>, mode: Int) {
             playing_cards.removeAt(num)
         }
     }
-    // TODO isLost()
+    // isLost()
     fun isLost(): Boolean {
         if(drawing_cards.isEmpty() && playing_cards.isEmpty() || life_point <= 0) {
             return true

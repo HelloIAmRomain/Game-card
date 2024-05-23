@@ -56,7 +56,7 @@ class PlayerTest {
     }
 
     @Test
-    fun getBoard_cards_init() {
+    fun getBoard_cards_0_init() {
         // board is empty
         mode = 0
         p1 = Player(cards_base.giveCards(mode),mode)
@@ -146,6 +146,7 @@ class PlayerTest {
     }
     @Test
     fun isLostByCard() {
+        // check card to play
         mode = 0
         p1 = Player(cards_base.giveCards(mode),mode)
         // draw 5 cards
@@ -167,8 +168,15 @@ class PlayerTest {
     }
     @Test
     fun isLostByLife() {
-        // TODO check life
-
+        // check life
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode),mode)
+        p1.life_point = 1
+        assertEquals(false, p1.isLost())
+        p1.life_point = -1
+        assertEquals(true, p1.isLost())
+        p1.life_point = 0
+        assertEquals(true, p1.isLost())
     }
 
 }
