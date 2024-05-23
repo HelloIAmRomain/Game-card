@@ -132,4 +132,15 @@ class PlayerTest {
         // TODO 1) test with first card in draw_card and in playing card
         // TODO 2) same tests mode 2
     }
+    @Test
+    fun isLost() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode),mode)
+        p1.drawCard()
+        assertEquals(4, p1.drawing_cards.size)
+        assertEquals(6, p1.playing_cards.size)
+        assertEquals(0, p1.board_cards.size)
+        // TODO 1) test with first card in draw_card and in playing card
+        // TODO 2) same tests mode 2
+    }
 }
