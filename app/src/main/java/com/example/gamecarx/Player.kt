@@ -36,9 +36,18 @@ class Player(cards: MutableList<Card>, mode: Int) {
         }
 
     }
+
+    fun discardPlayingCard(num: Int) {
+        // Case there was drawing cards
+        if (playing_cards.isNotEmpty()) {
+            discard_cards.add(playing_cards[num])
+            // remove first drawing card
+            playing_cards.removeAt(num)
+        }
+    }
     // TODO isLost()
     fun isLost(): Boolean {
-        if(drawing_cards.isEmpty() && playing_cards.isEmpty()) {
+        if(drawing_cards.isEmpty() && playing_cards.isEmpty() || life_point <= 0) {
             return true
         }
         else {

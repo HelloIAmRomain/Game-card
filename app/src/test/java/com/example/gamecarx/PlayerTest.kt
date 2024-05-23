@@ -133,14 +133,42 @@ class PlayerTest {
         // TODO 2) same tests mode 2
     }
     @Test
-    fun isLost() {
+    fun discardPlayingCard() {
         mode = 0
         p1 = Player(cards_base.giveCards(mode),mode)
-        p1.drawCard()
-        assertEquals(4, p1.drawing_cards.size)
-        assertEquals(6, p1.playing_cards.size)
-        assertEquals(0, p1.board_cards.size)
-        // TODO 1) test with first card in draw_card and in playing card
-        // TODO 2) same tests mode 2
+        var cards_size_expected = 4
+        while(cards_size_expected != 0) {
+            p1.discardPlayingCard(1)
+            assertEquals(cards_size_expected, p1.playing_cards.size)
+            --cards_size_expected
+        }
+        // TODO check if we discard the right car from the hand
     }
+    @Test
+    fun isLostByCard() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode),mode)
+        // draw 5 cards
+        var nb_card_to_draw = 5
+        while(nb_card_to_draw != 0) {
+            p1.drawCard()
+            --nb_card_to_draw
+        }
+        // discard 10 cards and test if it lost or not
+        var nb_card_to_discard = 10
+        while(nb_card_to_discard != 0) {
+            // we don't lose when we have cards
+            assertEquals(false, p1.isLost())
+            p1.discardPlayingCard(0)
+            --nb_card_to_discard
+        }
+        // we lose when we have all in  discard card
+        assertEquals(true, p1.isLost())
+    }
+    @Test
+    fun isLostByLife() {
+        // TODO check life
+
+    }
+
 }
