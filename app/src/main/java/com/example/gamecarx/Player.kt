@@ -56,8 +56,27 @@ class Player(cards: MutableList<Card>, mode: Int) {
     }
     //  check cards on hand and on board
     //  check life point
-    // TODO playCard()
+    fun playCard(num: Int) {
+        // Case there was playing cards
+        if (playing_cards.isNotEmpty()) {
+            board_cards.add(playing_cards[num])
+            // remove first drawing card
+            playing_cards.removeAt(num)
+        }
+        // FUTURE activate "play effect"
+    }
     // TODO attackBoard()
+    fun attackBoard(num: Int) {
+        // TODO choose a card in hand to attack with
+        //board_cards[num]
+        // TODO if there was no enemy card in board remove 1 life point to enemy
+        // TODO else enemy choose a card to defend with
+        // TODO compare which card is discard or not (special case with two Tough and same power)
+
+
+        // FUTURE "venomous" keyword
+        // FUTURE you can choose enemy card with "hunter" keyword
+    }
 
 
 }

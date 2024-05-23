@@ -129,8 +129,8 @@ class PlayerTest {
         assertEquals(4, p1.drawing_cards.size)
         assertEquals(6, p1.playing_cards.size)
         assertEquals(0, p1.board_cards.size)
-        // TODO 1) test with first card in draw_card and in playing card
-        // TODO 2) same tests mode 2
+        // OPTION 1) test with first card in draw_card and in playing card
+        // OPTION 2) same tests mode 2
     }
     @Test
     fun discardPlayingCard() {
@@ -142,7 +142,7 @@ class PlayerTest {
             assertEquals(cards_size_expected, p1.playing_cards.size)
             --cards_size_expected
         }
-        // TODO check if we discard the right car from the hand
+        // OPTION check if we discard the right car from the hand
     }
     @Test
     fun isLostByCard() {
@@ -177,6 +177,18 @@ class PlayerTest {
         assertEquals(true, p1.isLost())
         p1.life_point = 0
         assertEquals(true, p1.isLost())
+    }
+    @Test
+    fun playCard() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode),mode)
+        assertEquals(0, p1.board_cards.size)
+        assertEquals(5, p1.playing_cards.size)
+        // play first card on hand
+        p1.playCard(0)
+        assertEquals(1, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+        // OPTION check if the correct was put on board
     }
 
 }
