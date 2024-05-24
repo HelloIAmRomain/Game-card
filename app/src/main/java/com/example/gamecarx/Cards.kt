@@ -14,7 +14,7 @@ class Cards {
     }
 
     fun getCards():MutableList<Card> {
-        return this.cards
+        return cards
     }
 
     fun initCards(): MutableList<Card>? {
@@ -57,7 +57,7 @@ class Cards {
         return this.cards
     }
 
-    fun shuffleCards(i_MIN: Int=200, i_MAX: Int=500): MutableList<Card> {
+    fun shuffleCards(i_MIN: Int=200, i_MAX: Int=500) {
         // shuffle the cards given
         var rnd_swaps = (i_MIN..i_MAX).random()
         var i_swap = (0..this.cards.size-2).random()
@@ -69,7 +69,6 @@ class Cards {
             j_swap = (0..this.cards.size-2).random() // take number between 0 and max numbers cards less 2
             //println(i_swap.toString() + " " + j_swap + " " + cards)
         }
-        return this.cards
     }
 
     fun giveCards(mode: Int): MutableList<Card> {

@@ -3,12 +3,14 @@ package com.example.gamecarx
 class Game {
     var nb_player: Int
     var mode: Int
+    var playerTurn: Int
 
     constructor(nb_player: Int=2, mode: Int=0) {
         // nb_player can be 2 or 4
         // mode can be 0 as normal, 1 first extension, ...
         this.nb_player = nb_player
         this.mode = mode
+        this.playerTurn = 0
     }
 
 
@@ -16,9 +18,16 @@ class Game {
     fun mode_0() {
         // Get cards with correct path
         var cards_base: Cards = Cards("src/main/assets/dataset/cards_base.csv")
-        var cards_shuffle = cards_base.getCards()?.let { cards_base.shuffleCards() }
-        // 47 cards
+        cards_base.shuffleCards()
+        var cards_shuffle = cards_base.getCards()
+        // 48 cards
         // TODO distrib to players
+        // first card to p1
+        // second card to p2
+        // if p1 > p2
+        // p1 play first else p2 play first
+
+
         // TODO display  10 drawing cards with number on it for each player
         // TODO display life points
         // TODO draw the cards 5 for players and hide enemy cards
