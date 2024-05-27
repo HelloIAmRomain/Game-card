@@ -54,10 +54,8 @@ class Game// nb_player can be 2 or 4
         // 48 cards
         // distrib cards to players
         distribToPlayers(cards_base)
-        // TODO setPlayerStart
+        // setPlayerStart
         setPlayerStart(cards_base)
-        //  if p1 > p2
-        //  p1 play first else p2 play first
 
 
         // TODO display  10 drawing cards with number on it for each player
@@ -71,5 +69,12 @@ class Game// nb_player can be 2 or 4
         // Case two players
         // Case four players
     }
-        // TODO 2) tests
+
+    // TODO a function for each turn
+    //  give choice to do in prompt or mobile view
+    //  choice can be
+    //    play a card from hand to board, => Enemy can Mindbug, if it does something strong will happened
+    //    attack with a card on a board (OPTION hunter or sneaky effect),
+    //  wait for action from user or AI
+    //
 }
