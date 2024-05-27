@@ -13,7 +13,7 @@ class CardsTest {
         cards_base = Cards("src/main/assets/dataset/cards_base.csv")
     }
     @Test
-    fun getCardsPath() {
+    fun getCardsPath_0() {
         assertEquals(/* expected = */ "src/main/assets/dataset/cards_base.csv", /* actual = */ cards_base.cardsPath)
     }
 
@@ -24,7 +24,7 @@ class CardsTest {
     }
 
     @Test
-    fun getCards() {
+    fun getCards_0() {
         val mycards_base: List<Card>? = cards_base.getCards()
         assertEquals(/* expected = */ 48, /* actual = */ mycards_base?.size)
     }
@@ -47,13 +47,20 @@ class CardsTest {
         assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(cards_base.getCards()))
     }
     @Test
-    fun giveCards_0() {
+    fun giveCards_2_players_0() {
         assertEquals(/* expected = */ 10, /* actual = */ cards_base.giveCards(0).size)
         assertEquals(/* expected = */ 38, /* actual = */ cards_base.getCards().size)
     }
     @Test
-    fun giveCards_1() {
+    fun giveCards_4_players_0() {
         assertEquals(/* expected = */ 6, /* actual = */ cards_base.giveCards(1).size)
         assertEquals(/* expected = */ 42, /* actual = */ cards_base.getCards().size)
+    }
+    @Test
+    fun giveCard_0() {
+        assertEquals(/* expected = */ 48, /* actual = */ cards_base.getCards().size)
+        var card_given = cards_base.giveCard()
+        assertEquals(/* expected = */ true, /* actual = */ card_given is Card)
+        assertEquals(/* expected = */ 47, /* actual = */ cards_base.getCards().size)
     }
 }

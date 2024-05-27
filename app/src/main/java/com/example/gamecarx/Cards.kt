@@ -91,4 +91,11 @@ class Cards {
         return cards_to_give
     }
 
+    fun giveCard(): Card {
+        var cards_to_give = this.cards[0]
+        //   remove previous cards from cards
+        this.cards.removeAt(0)
+        return cards_to_give
+    }
+
 }
