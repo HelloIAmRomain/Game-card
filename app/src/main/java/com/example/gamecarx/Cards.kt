@@ -5,11 +5,10 @@ import com.example.gamecarx.Card
 import java.io.BufferedReader
 import java.io.FileReader
 
-class Cards {
-    var cardsPath: String
+class Cards(var cardsPath: String) {
     private var cards: MutableList<Card>
-    constructor(cardsPath: String) {
-        this.cardsPath = cardsPath
+
+    init {
         this.cards = initCards()!!
     }
 

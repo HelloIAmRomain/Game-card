@@ -1,18 +1,14 @@
 package com.example.gamecarx
 
-class Game {
-    var nb_player: Int
-    var mode: Int
+class Game// nb_player can be 2 or 4
+// mode can be 0 as normal, 1 first extension, ...
+    (var nb_player: Int = 2, var mode: Int = 0) {
     var playerTurn: Int
     var players: MutableList<Player>
     var cardsTurn: MutableList<Card>
     lateinit var cards_base: Cards
 
-    constructor(nb_player: Int=2, mode: Int=0) {
-        // nb_player can be 2 or 4
-        // mode can be 0 as normal, 1 first extension, ...
-        this.nb_player = nb_player
-        this.mode = mode
+    init {
         this.playerTurn = 0
         this.players = mutableListOf()
         this.cardsTurn = mutableListOf()
