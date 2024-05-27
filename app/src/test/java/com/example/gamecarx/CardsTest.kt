@@ -42,9 +42,9 @@ class CardsTest {
     @Test
     fun shuffleCards() {
         val mycards_base: MutableList<Card> = cards_base.getCards() as MutableList<Card>
-        var t = cards_base.shuffleCards()
-        assertEquals(/* expected = */ true, /* actual = */ t.containsAll(mycards_base))
-        assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(t))
+        cards_base.shuffleCards()
+        assertEquals(/* expected = */ true, /* actual = */ cards_base.getCards().containsAll(mycards_base))
+        assertEquals(/* expected = */ true, /* actual = */ mycards_base.containsAll(cards_base.getCards()))
     }
     @Test
     fun giveCards_0() {

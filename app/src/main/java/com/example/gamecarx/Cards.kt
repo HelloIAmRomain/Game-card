@@ -71,10 +71,10 @@ class Cards {
         }
     }
 
-    fun giveCards(mode: Int): MutableList<Card> {
+    fun giveCards(nbPlayer: Int=0): MutableList<Card> {
         var cards_to_give: MutableList<Card> = ArrayList()
         var it: Int
-        if(mode == 0) { // solo
+        if(nbPlayer == 0) { // solo
             it = 10
         }
         else { // multi
