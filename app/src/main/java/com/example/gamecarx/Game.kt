@@ -4,6 +4,7 @@ class Game {
     var nb_player: Int
     var mode: Int
     var playerTurn: Int
+    lateinit var players: MutableList<Player>
 
     constructor(nb_player: Int=2, mode: Int=0) {
         // nb_player can be 2 or 4
@@ -11,18 +12,24 @@ class Game {
         this.nb_player = nb_player
         this.mode = mode
         this.playerTurn = 0
+        this.players = mutableListOf()
     }
 
+    fun distribToPlayers(cards_base:Cards) {
+        for (i in 1..nb_player) {
+            players.add(Player(cards_base.giveCards()))
+        }
+    }
 
     // TODO 1) mode_0
-    fun mode_0() {
+    fun init_mode_0() {
         // Get cards with correct path
         var cards_base: Cards = Cards("src/main/assets/dataset/cards_base.csv")
         cards_base.shuffleCards()
-        var cards_shuffle = cards_base.getCards()
         // 48 cards
-        // TODO distrib to players
-        // first card to p1
+        // distrib cards to players
+        distribToPlayers(cards_base)
+        // TODO first card to p1
         // second card to p2
         // if p1 > p2
         // p1 play first else p2 play first

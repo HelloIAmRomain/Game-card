@@ -1,6 +1,6 @@
 package com.example.gamecarx
 
-class Player(cards: MutableList<Card>, mode: Int) {
+class Player(cards: MutableList<Card>, mode: Int=0) {
 
     var drawing_cards: MutableList<Card>
     var playing_cards: MutableList<Card>
