@@ -40,4 +40,24 @@ class GameTest {
         // OPTION check if there was no mistake and all cards are here
         // OPTION do the same test with 4 players
     }
+
+    @Test
+    fun setPlayerStart_2_players_0() {
+        game_.init_mode_0()
+        // compare total cards to basic cards number
+        var cardsTurnSize = game_.cardsTurn.size
+        assertEquals(
+            /* expected = */ 48,
+            /* actual = */ game_.cardsTurn.size + game_.players[0].playing_cards.size +
+                    game_.players[0].drawing_cards.size + game_.players[1].playing_cards.size +
+                    game_.players[1].drawing_cards.size + game_.cards_base.getCards().size
+        )
+        // check if the player turn is good with the two last cards
+        if(game_.cardsTurn[cardsTurnSize - 2].power > game_.cardsTurn[cardsTurnSize - 2].power) {
+            assertEquals(0, game_.playerTurn)
+        }
+        if(game_.cardsTurn[cardsTurnSize - 2].power < game_.cardsTurn[cardsTurnSize - 2].power) {
+            assertEquals(1, game_.playerTurn)
+        }
+    }
 }

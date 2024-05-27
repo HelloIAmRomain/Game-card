@@ -4,7 +4,9 @@ class Game {
     var nb_player: Int
     var mode: Int
     var playerTurn: Int
-    lateinit var players: MutableList<Player>
+    var players: MutableList<Player>
+    var cardsTurn: MutableList<Card>
+    lateinit var cards_base: Cards
 
     constructor(nb_player: Int=2, mode: Int=0) {
         // nb_player can be 2 or 4
@@ -13,6 +15,7 @@ class Game {
         this.mode = mode
         this.playerTurn = 0
         this.players = mutableListOf()
+        this.cardsTurn = mutableListOf()
     }
 
     fun distribToPlayers(cards_base:Cards) {
@@ -20,19 +23,45 @@ class Game {
             players.add(Player(cards_base.giveCards()))
         }
     }
+    fun setPlayerStart(cards_base:Cards) {
+        // give cards to each players
+        //  cardsTurn.add to display cards that we saw at the beginning
+        //  first card to p1
+        var p1 = cards_base.giveCard()
+        cardsTurn.add(p1)
+        //  second card to p2
+        var p2 = cards_base.giveCard()
+        cardsTurn.add(p2)
+        while(true) {
+            // Compare them
+            if(p1.power < p2.power) {
+                playerTurn = 1
+                break
+            }
+            else if (p1.power > p2.power) {
+                playerTurn = 0
+                break
+            }
+            // Case it equals, we try again
+            p1 = cards_base.giveCard()
+            cardsTurn.add(p1)
+            p2 = cards_base.giveCard()
+            cardsTurn.add(p2)
+        }
+    }
 
     // TODO 1) mode_0
     fun init_mode_0() {
         // Get cards with correct path
-        var cards_base: Cards = Cards("src/main/assets/dataset/cards_base.csv")
+        cards_base = Cards("src/main/assets/dataset/cards_base.csv")
         cards_base.shuffleCards()
         // 48 cards
         // distrib cards to players
         distribToPlayers(cards_base)
-        // TODO first card to p1
-        // second card to p2
-        // if p1 > p2
-        // p1 play first else p2 play first
+        // TODO setPlayerStart
+        setPlayerStart(cards_base)
+        //  if p1 > p2
+        //  p1 play first else p2 play first
 
 
         // TODO display  10 drawing cards with number on it for each player
