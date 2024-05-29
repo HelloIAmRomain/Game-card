@@ -53,36 +53,13 @@ class Game// nb_player can be 2 or 4
         }
         // else curPlayer have to choose a card on hand or board
         // TODO Case there was card on hand and board
-        if(curPlayer.playing_cards.size > 0 && curPlayer.board_cards.size > 0) {
-            // var input_play = waitForInputPlay()
-            // if(input_play == -1) {
-            //   var input_attack = waitForInputAttack()
-                 //  choose a card to attack with
-            //   currPlayer.attackBoard(input_attack)
-            // }
-            // else {
-                 //  choose a card to play
-            //   currPlayer.playCard(input_play)
-            // }
-        }
-        // TODO Case there was card only on hand
-        else if(curPlayer.playing_cards.size > 0 && curPlayer.board_cards.size == 0) {
-            //  choose a card to play
-        }
-        // TODO Case there was card only on board
-        else if(curPlayer.playing_cards.size == 0 && curPlayer.board_cards.size > 0) {
-            //  choose a card to attack with
-        }
+        //  UI create playing/boarding cards with listner (double click to choose)
+        //  Object choice to do
+        //     give a list to do (playing card id and boarding cards id
+
         // Next turn
         playerTurn += 1
     }
-
-    // TODO a function for each turn
-    //  give choice to do in prompt or mobile view
-    //  choice can be
-    //    play a card from hand to board, => Enemy can Mindbug, if it does something strong will happened
-    //    attack with a card on a board (OPTION hunter or sneaky effect),
-    //  wait for action from user or AI
 
     // TODO 1) mode_0
     fun init_mode_0() {
