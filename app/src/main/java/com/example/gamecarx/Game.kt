@@ -53,10 +53,25 @@ class Game// nb_player can be 2 or 4
         }
         // else curPlayer have to choose a card on hand or board
         // TODO Case there was card on hand and board
-        //  UI create playing/boarding cards with listner (double click to choose)
+        //  UI create playing/boarding cards with listener (double click to choose)
         //  Object choice to do
         //     give a list to do (playing card id and boarding cards id
-
+        curPlayer.updateCursorChoice()
+        // choose a card (an integer between 0 and playing_cards + boarding_cards size)
+        // var cursor:Int = waitForTouch() || RL_do_something()
+        // if(cursor >= curPlayer.playing_cards.size) {
+        // // case currPlayer play a card
+        //  currPlayer.playCard(cursor - playing_cards.size)
+        //  var enemy_cursor:Boolean = waitForEnemyTouch()  || RL_enemy_do_something()
+        //  if(enemy_cursor) {
+        //  // case enemy use mindbug
+        //
+        //  }
+        // }
+        // else {
+        // // case currPlayer attack with a card
+        //  currplayer.attackBoard(cursor)
+        // }
         // Next turn
         playerTurn += 1
     }

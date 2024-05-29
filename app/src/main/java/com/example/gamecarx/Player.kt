@@ -9,6 +9,8 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
     var mindbug: Int = 0
     var mindfrog: Int = 0
     var life_point: Int
+    var cursor: Int
+    var cursor_choices: MutableList<Card>
 
     init {
         drawing_cards = ArrayList(cards.subList(0, cards.size / 2))
@@ -24,6 +26,8 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
             mindfrog = 1
         }
         life_point = 3
+        cursor = 0
+        cursor_choices = mutableListOf()
     }
 
     fun drawCard() {
@@ -67,7 +71,7 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
     }
     // TODO attackBoard()
     fun attackBoard(num: Int) {
-        // TODO choose a card in hand to attack with
+        // TODO choose a card in board to attack with
         //board_cards[num]
         // TODO if there was no enemy card in board remove 1 life point to enemy
         // TODO else enemy choose a card to defend with
@@ -76,6 +80,10 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
 
         // FUTURE "venomous" keyword
         // FUTURE you can choose enemy card with "hunter" keyword
+    }
+
+    fun updateCursorChoice() {
+        cursor_choices = (playing_cards + board_cards).toMutableList()
     }
 
 
