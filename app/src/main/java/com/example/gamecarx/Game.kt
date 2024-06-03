@@ -45,20 +45,63 @@ class Game// nb_player can be 2 or 4
             cardsTurn.add(p2)
         }
     }
+
+    fun fight(attackCardNum:Int, defendCardNum:Int, curPlayer: Player, nextPlayer: Player) {
+        var attackCardPower:Int = curPlayer.getCardBoard(attackCardNum).power.toInt()
+
+
+        var defendCardPower:Int = nextPlayer.getCardBoard(defendCardNum).power.toInt()
+        if(attackCardPower == defendCardPower) { // FUTURE VENOMOUS
+            // discard both card
+            curPlayer.discardBoardCard(attackCardNum)
+            nextPlayer.discardBoardCard(attackCardNum)
+        }
+        else if(attackCardPower > defendCardPower) { // FUTUR VENOMOUS
+            // discard defend card
+            nextPlayer.discardBoardCard(attackCardNum)
+        }
+        else { // FUTUR VENOMOUS
+            // discard  attack card
+            curPlayer.discardBoardCard(attackCardNum)
+        }
+    }
+
     fun turn() {
         // check if player lost
         var curPlayer = players[playerTurn%2]
+        var nextPlayer = players[playerTurn+1%2]
+        var attackCardNum: Int
+        var defendCardNum: Int
         if(curPlayer.isLost()) {
             // FUTUR (playerTurn+1)%2 win
         }
         // else curPlayer have to choose a card on hand or board
-        // TODO Case there was card on hand and board
-        //  UI create playing/boarding cards with listener (double click to choose)
-        //  Object choice to do
-        //     give a list to do (playing card id and boarding cards id
         curPlayer.updateCursorChoice()
-        // choose a card (an integer between 0 and playing_cards + boarding_cards size)
+        //  choose a card (an integer between 0 and playing_cards + boarding_cards size)
         // var cursor:Int = waitForTouch() || RL_do_something()
+        var cursor_curPlayer:Int = (0..curPlayer.cursor_choices.size).random()
+        if(cursor_curPlayer >= curPlayer.playing_cards.size) {
+            // player attack phase with a card on board
+            attackCardNum = cursor_curPlayer - curPlayer.playing_cards.size
+
+            // enemy defend phase with a card
+            if(nextPlayer.board_cards.size > 0) {
+                var cursor_nextPlayer:Int = (0..nextPlayer.board_cards.size).random()
+                defendCardNum = cursor_nextPlayer
+                // TODO compare attacker and defender
+                fight(attackCardNum, defendCardNum, curPlayer, nextPlayer)
+            }
+            else {
+                nextPlayer.life_point -= 1
+            }
+
+        }
+        else {
+            // play a card on board
+            curPlayer.playCard(cursor_curPlayer)
+            // FUTUR mindbug phase
+        }
+
         // if(cursor >= curPlayer.playing_cards.size) {
         // // case currPlayer play a card
         //  currPlayer.playCard(cursor - playing_cards.size)

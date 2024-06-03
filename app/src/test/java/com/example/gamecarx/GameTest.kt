@@ -60,4 +60,6 @@ class GameTest {
             assertEquals(1, game_.playerTurn)
         }
     }
+
+    // TODO turn() fight()
 }

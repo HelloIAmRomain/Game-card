@@ -41,6 +41,14 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
 
     }
 
+    fun discardBoardCard(num:Int) {
+        // add board card to discard
+        discard_cards.add(board_cards[num])
+        // remove first drawing card
+        board_cards.removeAt(num)
+
+    }
+
     fun discardPlayingCard(num: Int) {
         // Case there was drawing cards
         if (playing_cards.isNotEmpty()) {
@@ -70,9 +78,9 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
         // FUTURE activate "play effect"
     }
     // TODO attackBoard()
-    fun attackBoard(num: Int) {
-        // TODO choose a card in board to attack with
-        //board_cards[num]
+    fun getCardBoard(num: Int): Card {
+        // choose a card in board to attack with
+        return board_cards[num]
         // TODO if there was no enemy card in board remove 1 life point to enemy
         // TODO else enemy choose a card to defend with
         // TODO compare which card is discard or not (special case with two Tough and same power)
