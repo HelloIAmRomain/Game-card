@@ -77,17 +77,9 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
         }
         // FUTURE activate "play effect"
     }
-    // TODO attackBoard()
     fun getCardBoard(num: Int): Card {
         // choose a card in board to attack with
         return board_cards[num]
-        // TODO if there was no enemy card in board remove 1 life point to enemy
-        // TODO else enemy choose a card to defend with
-        // TODO compare which card is discard or not (special case with two Tough and same power)
-
-
-        // FUTURE "venomous" keyword
-        // FUTURE you can choose enemy card with "hunter" keyword
     }
 
     fun updateCursorChoice() {

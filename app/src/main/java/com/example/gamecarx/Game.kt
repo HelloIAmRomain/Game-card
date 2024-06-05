@@ -83,12 +83,12 @@ class Game// nb_player can be 2 or 4
         if(cursor_curPlayer >= curPlayer.playing_cards.size) {
             // player attack phase with a card on board
             attackCardNum = cursor_curPlayer - curPlayer.playing_cards.size
-
-            // enemy defend phase with a card
+            // FUTUR FURY
+            // enemy defend phase with a card FUTUR or not
             if(nextPlayer.board_cards.size > 0) {
                 var cursor_nextPlayer:Int = (0..nextPlayer.board_cards.size).random()
                 defendCardNum = cursor_nextPlayer
-                // TODO compare attacker and defender
+                // compare attacker and defender
                 fight(attackCardNum, defendCardNum, curPlayer, nextPlayer)
             }
             else {
@@ -100,6 +100,19 @@ class Game// nb_player can be 2 or 4
             // play a card on board
             curPlayer.playCard(cursor_curPlayer)
             // FUTUR mindbug phase
+            playerTurn += 1
+            if(nextPlayer.mindbug > 0) {
+                var cursor_nextPlayer:Int = (0..1).random()
+                if(cursor_nextPlayer == 0) {
+                    // Case nextPlayer mindbug
+                    // TODO useMindbug(curPlayer, nextPlayer, cursor_curPlayer)
+                    playerTurn += 1
+                }
+                else {
+                    // Case nextPlayer didn't mindbug
+                }
+            }
+            // FUTUR apply effect
         }
 
         // if(cursor >= curPlayer.playing_cards.size) {
