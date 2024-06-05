@@ -82,6 +82,12 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
         return board_cards[num]
     }
 
+    fun giveLastCardPlay(): Card {
+        var cardToGive = board_cards[board_cards.size]
+        board_cards.removeAt(board_cards.size)
+        return cardToGive
+    }
+
     fun updateCursorChoice() {
         cursor_choices = (playing_cards + board_cards).toMutableList()
     }

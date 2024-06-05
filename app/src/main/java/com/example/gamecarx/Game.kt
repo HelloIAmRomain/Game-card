@@ -66,6 +66,14 @@ class Game// nb_player can be 2 or 4
         }
     }
 
+    fun useMindbug(curPlayer: Player, nextPlayer: Player) {
+        curPlayer.mindbug -= 1
+        var lastCardToGive = nextPlayer.giveLastCardPlay()
+        curPlayer.playing_cards.add(lastCardToGive)
+        curPlayer.playCard(curPlayer.playing_cards.size)
+        // FUTUR apply effect
+    }
+
     fun turn() {
         // check if player lost
         var curPlayer = players[playerTurn%2]
@@ -99,20 +107,34 @@ class Game// nb_player can be 2 or 4
         else {
             // play a card on board
             curPlayer.playCard(cursor_curPlayer)
-            // FUTUR mindbug phase
+
+            // Mindbug phase
+            // Turn change
             playerTurn += 1
-            if(nextPlayer.mindbug > 0) {
-                var cursor_nextPlayer:Int = (0..1).random()
-                if(cursor_nextPlayer == 0) {
-                    // Case nextPlayer mindbug
-                    // TODO useMindbug(curPlayer, nextPlayer, cursor_curPlayer)
+            curPlayer = players[playerTurn%2]
+            nextPlayer = players[playerTurn+1%2]
+
+            if(curPlayer.mindbug > 0) {
+                var isMindbug:Int = (0..1).random()
+                if(isMindbug == 0) {
+                    // Case curPlayer mindbug
+                    useMindbug(curPlayer, nextPlayer)
+                    // Turn change
                     playerTurn += 1
+                    curPlayer = players[playerTurn%2]
+                    nextPlayer = players[playerTurn+1%2]
                 }
                 else {
-                    // Case nextPlayer didn't mindbug
+                    // Case curPlayer didn't mindbug
+                    // Turn change
+                    playerTurn += 1
+                    curPlayer = players[playerTurn%2]
+                    nextPlayer = players[playerTurn+1%2]
+                    // FUTUR apply effect
                 }
+
             }
-            // FUTUR apply effect
+
         }
 
         // if(cursor >= curPlayer.playing_cards.size) {

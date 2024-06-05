@@ -61,5 +61,5 @@ class GameTest {
         }
     }
 
-    // TODO turn() fight()
+    // TODO turn() fight() game.useMindbug()
 }

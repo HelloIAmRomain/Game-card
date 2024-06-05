@@ -191,6 +191,6 @@ class PlayerTest {
         // OPTION check if the correct was put on board
     }
 
-    // TODO test discardBoardCard() getCardBoard() updateCursorChoice()
+    // TODO test discardBoardCard() getCardBoard() giveLastCardPlay() updateCursorChoice()
 
 }
