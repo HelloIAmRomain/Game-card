@@ -34,7 +34,7 @@ class Cards(var cardsPath: String) {
                 //println(fields[0])
                 // Add one or more cards
                 while(nb > 0) {
-                    cards.add(Card(fields[0], fields[1], fields[2], fields[3], fields[4]))
+                    cards.add(Card(fields[0], fields[1], fields[2].toInt(), fields[3], fields[4]))
                     nb--
                 }
             }

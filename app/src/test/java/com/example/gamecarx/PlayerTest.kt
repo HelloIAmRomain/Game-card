@@ -191,6 +191,57 @@ class PlayerTest {
         // OPTION check if the correct was put on board
     }
 
-    // TODO test discardBoardCard() getCardBoard() giveLastCardPlay() updateCursorChoice()
+    @Test
+    fun discardBoardCard() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode), mode)
+        p1.playCard(0)
+        assertEquals(1, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+        p1.discardBoardCard(0)
+        assertEquals(0, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+    }
+
+    @Test
+    fun getCardBoard() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode), mode)
+        p1.playCard(0)
+        assertEquals(1, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+        var cardPlay = p1.board_cards[0]
+        var cardBoard = p1.getCardBoard(0)
+        assertEquals(cardPlay, cardBoard)
+    }
+
+    @Test
+    fun giveLastCardPlay() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode), mode)
+        p1.playCard(0)
+        assertEquals(1, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+        var cardPlay = p1.board_cards[0]
+        var cardBoard = p1.giveLastCardPlay()
+        assertEquals(cardPlay, cardBoard)
+        assertEquals(0, p1.board_cards.size)
+    }
+
+    @Test
+    fun updateCursorChoice() {
+        mode = 0
+        p1 = Player(cards_base.giveCards(mode), mode)
+        p1.updateCursorChoice()
+        assertEquals(5, p1.cursor_choices.size)
+        p1.playCard(0)
+        assertEquals(1, p1.board_cards.size)
+        assertEquals(4, p1.playing_cards.size)
+        p1.updateCursorChoice()
+        assertEquals(5, p1.cursor_choices.size)
+        p1.discardBoardCard(0) // Remove a card
+        p1.updateCursorChoice()
+        assertEquals(4, p1.cursor_choices.size)
+    }
 
 }

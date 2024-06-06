@@ -43,6 +43,7 @@ class GameTest {
 
     @Test
     fun setPlayerStart_2_players_0() {
+        // Test if the cards to know the turn are OK
         game_.init_mode_0()
         // compare total cards to basic cards number
         var cardsTurnSize = game_.cardsTurn.size
@@ -61,5 +62,81 @@ class GameTest {
         }
     }
 
-    // TODO turn() fight() game.useMindbug()
+    @Test
+    fun turn_2_players_0() {
+        // check if the first turn work
+        game_.init_mode_0()
+        if(game_.playerTurn == 0) {
+            // case p1 begin
+            game_.turn()
+            if(game_.players[1].mindbug == 1) {// p2 mindbugs
+                // check card go to p2 board
+                assertEquals(1, game_.players[1].board_cards.size)
+                assertEquals(0, game_.players[0].board_cards.size)
+                // check if it is p1 turn again
+                assertEquals(0, game_.playerTurn)
+            }
+            else {// p2 don't mindbug
+                // check card go to p1 board
+                assertEquals(1, game_.players[0].board_cards.size)
+                assertEquals(0, game_.players[1].board_cards.size)
+                // check if it is p1 turn again
+                assertEquals(1, game_.playerTurn)
+            }
+        }
+    }
+
+    @Test
+    fun fight_only_power_2_players_0() {
+        for (i in 1..100) {
+            // test with 100 first turn
+
+            // create a game with two player playing the first card each hand
+            game_.init_mode_0()
+            game_.players[0].playCard(0)
+            game_.players[1].playCard(0)
+            var p1CardPower = game_.players[0].board_cards[0].power
+            var p2CardPower = game_.players[1].board_cards[0].power
+            // first player attack second player which defend with its only card
+            game_.fight(0, 0, game_.players[0], game_.players[1])
+
+            if (p1CardPower == p2CardPower) {
+                // no cards on boards
+                assertEquals(
+                    0,
+                    game_.players[0].board_cards.size + game_.players[1].board_cards.size
+                )
+            } else if (p1CardPower > p2CardPower) {
+                // only card on p1 board
+                assertEquals(1, game_.players[0].board_cards.size)
+                assertEquals(0, game_.players[1].board_cards.size)
+            } else {
+                // only card on p2 board
+                assertEquals(0, game_.players[0].board_cards.size)
+                assertEquals(1, game_.players[1].board_cards.size)
+            }
+        }
+    }
+
+    @Test
+    fun useMindbug_without_effect_2_players_0() {
+        // first player play a card on the board
+        game_.init_mode_0()
+        game_.players[0].playCard(0)
+        // check that first player has one card on board
+        assertEquals(1, game_.players[0].board_cards.size)
+        // check that second player has zero card on board
+        assertEquals(0, game_.players[1].board_cards.size)
+        // check second player mindbugs
+        assertEquals(2, game_.players[1].mindbug)
+        // second player use mindbug
+        game_.useMindbug(game_.players[1], game_.players[0])
+        // check that first player has zero card on board
+        assertEquals(0, game_.players[0].board_cards.size)
+        // check that second player has one card on board
+        assertEquals(1, game_.players[1].board_cards.size)
+        // check second player mindbugs
+        assertEquals(1, game_.players[1].mindbug)
+        // FUTUR test that the right card is give to player 2
+    }
 }

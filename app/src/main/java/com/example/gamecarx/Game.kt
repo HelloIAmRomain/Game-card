@@ -15,6 +15,7 @@ class Game// nb_player can be 2 or 4
     }
 
     fun distribToPlayers(cards_base:Cards) {
+        players = mutableListOf()
         for (i in 1..nb_player) {
             players.add(Player(cards_base.giveCards()))
         }
@@ -54,11 +55,11 @@ class Game// nb_player can be 2 or 4
         if(attackCardPower == defendCardPower) { // FUTURE VENOMOUS
             // discard both card
             curPlayer.discardBoardCard(attackCardNum)
-            nextPlayer.discardBoardCard(attackCardNum)
+            nextPlayer.discardBoardCard(defendCardNum)
         }
         else if(attackCardPower > defendCardPower) { // FUTUR VENOMOUS
             // discard defend card
-            nextPlayer.discardBoardCard(attackCardNum)
+            nextPlayer.discardBoardCard(defendCardNum)
         }
         else { // FUTUR VENOMOUS
             // discard  attack card
@@ -70,7 +71,8 @@ class Game// nb_player can be 2 or 4
         curPlayer.mindbug -= 1
         var lastCardToGive = nextPlayer.giveLastCardPlay()
         curPlayer.playing_cards.add(lastCardToGive)
-        curPlayer.playCard(curPlayer.playing_cards.size)
+        // play last card on hand
+        curPlayer.playCard(curPlayer.playing_cards.size-1)
         // FUTUR apply effect
     }
 
@@ -95,6 +97,7 @@ class Game// nb_player can be 2 or 4
             // enemy defend phase with a card FUTUR or not
             if(nextPlayer.board_cards.size > 0) {
                 var cursor_nextPlayer:Int = (0..nextPlayer.board_cards.size).random()
+                // TODO case no card to defend with less 1 hp too
                 defendCardNum = cursor_nextPlayer
                 // compare attacker and defender
                 fight(attackCardNum, defendCardNum, curPlayer, nextPlayer)

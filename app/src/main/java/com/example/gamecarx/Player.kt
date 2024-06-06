@@ -83,8 +83,8 @@ class Player(cards: MutableList<Card>, mode: Int=0) {
     }
 
     fun giveLastCardPlay(): Card {
-        var cardToGive = board_cards[board_cards.size]
-        board_cards.removeAt(board_cards.size)
+        var cardToGive = board_cards[board_cards.size-1]
+        board_cards.removeAt(board_cards.size-1)
         return cardToGive
     }
 
